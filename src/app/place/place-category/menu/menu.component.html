@@ -1,0 +1,10 @@
+<ul class="navbar-nav d-flex justify-content-around">
+  <li>
+    <a [class.active]="active === 0" (click)="onClick(-1)" class="nav-link" style="font-size: 12px;">Tüm
+      Kategoriler</a>
+  </li>
+  <li class="nav-item" *ngFor="let c of category; let i = index">
+    <a [class.active]="active === i + 1" (click)="onClick(i)" class="nav-link" style="font-size: 12px;">{{ c.name
+      }}</a>
+  </li>
+</ul>

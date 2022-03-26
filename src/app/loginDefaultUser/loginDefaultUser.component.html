@@ -1,0 +1,24 @@
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 py-5">
+    <div class="col-lg-7 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 mb-3">FiFunny.com</h1>
+      <p class="col-lg-10 fs-4">Giriş yapın. Eğer bir hesabınız yoksa hemen kayıt olun.</p>
+    </div>
+    <div class="col-md-10 mx-auto col-lg-5">
+      <form #loginForm (submit)="login()" class="p-4 p-md-5 border rounded-3 bg-light">
+        <div class="form-floating mb-3">
+          <input type="email" name="email" [(ngModel)]="loginUser.email" required class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">E-posta adresi</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" name="password" [(ngModel)]="loginUser.password" required class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Şifre</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-dark white black-background mt-5" type="submit">Giriş Yap</button>
+        <hr class="my-4">
+        <h6 class="text">İşletme hesabınız için <a class="border-bottom" routerLink="/loginUser" >Giriş Yapın</a></h6>
+      </form>
+    </div>
+  </div>
+</div>

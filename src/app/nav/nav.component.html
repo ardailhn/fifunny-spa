@@ -1,0 +1,106 @@
+<header class="text-white border border-bottom border-dark" style="background-color: #5D3EBC;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5D3EBC;">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <a class="navbar-brand" href="#" style="font-size: 24px; font-family: fantasy">FiFunny</a>
+      </div>
+
+      <div class="collapse navbar-collapse navbarColor03" id="navbarColor03">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" style="width: 90px;">
+            <a class="nav-link active" routerLink="/place" routerLinkActive="active">Ana Sayfa
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item" style="width: 100px;">
+            <a class="nav-link" routerLink="/about" routerLinkActive="active">Hakkımızda</a>
+          </li>
+          <li class="nav-item" style="width: 70px;">
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active">İletişim</a>
+          </li>
+        </ul>
+        <form *ngIf="0" class="d-flex arama">
+          <input class="form-control me-sm-2" id="placeName" #input (input)="sendInput()" type="text"
+            placeholder="Ara...">
+        </form>
+      </div>
+
+      <div>
+        <button class="navbar-toggler" mat-icon-button type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+          aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <mat-icon id="more">more_vert</mat-icon>
+        </button>
+        <button id="searchBarIcon" mat-icon-button (click)="myFunction()" >
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button (click)="fiPuan()">
+          <mat-icon>attach_money</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </div>
+
+      <mat-menu #menu="matMenu">
+
+        <button *ngIf="isAuthenticated" mat-menu-item routerLink="/profile" routerLinkActive="active">
+          <mat-icon>account_box</mat-icon>
+          <span>Profil</span>
+        </button>
+
+        <button *ngIf="isAuthenticated" mat-menu-item (click)="logOut()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Çıkış yap</span>
+        </button>
+
+        <button *ngIf="isAuthenticated1" mat-menu-item routerLink="/profileUser" routerLinkActive="active">
+          <mat-icon>account_box</mat-icon>
+          <span>Profil</span>
+        </button>
+
+        <button *ngIf="isAuthenticated1" mat-menu-item (click)="logOut1()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Çıkış yap</span>
+        </button>
+
+        <button *ngIf="!isAuthenticated && !isAuthenticated1" mat-menu-item routerLink="/login"
+          routerLinkActive="active">
+          <mat-icon>account_box</mat-icon>
+          <span>Giriş yap</span>
+        </button>
+
+        <button *ngIf="!isAuthenticated && !isAuthenticated1" mat-menu-item routerLink="/register"
+          routerLinkActive="active">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Kayıt ol</span>
+        </button>
+
+      </mat-menu>
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" style="width: 90px;">
+            <a class="nav-link active" routerLink="/place" routerLinkActive="active">Ana Sayfa
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item" style="width: 100px;">
+            <a class="nav-link" routerLink="/about" routerLinkActive="active">Hakkımızda</a>
+          </li>
+          <li class="nav-item" style="width: 70px;">
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active">İletişim</a>
+          </li>
+        </ul>
+        <form *ngIf="0" class="d-flex arama">
+          <input class="form-control me-sm-2" id="placeName" #input (input)="sendInput()" type="text"
+            placeholder="Ara...">
+        </form>
+      </div>
+    </div>
+  </nav>
+  <form class="d-flex arama">
+    <input class="form-control me-sm-2 searchBar" id="searchBar" #input (input)="sendInput()" (keyup.enter)="onEnter()" type="text" placeholder="Ara...">
+    <button id="searchBarIcon2" class="searchBarIcon2" mat-icon-button (click)="onEnter()" >
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+</header>

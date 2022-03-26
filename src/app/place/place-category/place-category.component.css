@@ -1,0 +1,195 @@
+#navbarDarkDropdownMenuLink {
+  font-size: 12px;
+}
+.form-check-label {
+  font-size: 14px;
+}
+
+.dropdown-menu {
+  opacity: 0.8;
+}
+
+.hamburger {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 96px;
+  height: 96px;
+  font-size: 0;
+  text-indent: -9999px;
+  cursor: pointer;
+  outline: none;
+  background: none;
+  border: 0;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  top: 44px;
+  left: 18px;
+  right: 18px;
+  height: 8px;
+  background: white;
+}
+
+.hamburger span::before,
+.hamburger span::after {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: white;
+  content: "";
+}
+
+.hamburger span::before {
+  top: -20px;
+}
+
+.hamburger span::after {
+  bottom: -20px;
+}
+
+.list-group-item.active {
+  background-color: #430297;
+  border-color: #430297;
+}
+
+a.active {
+  background-color: #430297;
+  border-color: #430297;
+}
+
+a:active {
+  background-color: #430297;
+  border-color: #430297;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.card {
+  border-radius: 20px;
+  margin: 0px;
+  padding: 0px;
+  width: 260px;
+  max-height: 326px;
+}
+.card-img-top {
+  height: 187px;
+}
+
+.card-body {
+  max-height: 100px;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    border-radius: 20px;
+    margin: 0px;
+    padding: 0px;
+    width: 200px;
+    max-height: 326px;
+  }
+  .card-img-top {
+    height: 187px;
+  }
+  
+  .card-body {
+    max-height: 100px;
+  }
+}
+
+@media (max-width: 990px) {
+  .cardContainer{
+    width: 100%;
+  }
+  #filters {
+    display: none;
+  }
+  #cardList {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    text-align: center;
+  }
+  #row1 {
+    text-align: center;
+    justify-content: center;
+  }
+  @media (max-width: 600px) {
+    .card {
+      border-radius: 20px;
+      margin: 0px;
+      padding: 0px;
+      width: 150px;
+      max-height: 326px;
+    }
+    .card-img-top {
+      height: 140px;
+    }
+    
+    .card-body {
+      max-height: 100px;
+    }
+    @media (max-width: 420px) {
+      #row1 {
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  @media (min-width: 990px) {
+    #cardList {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-gap: 10px;
+    }
+  }
+}
+
+#categoryMenu {
+  text-align: center;
+  justify-content: center;
+}
+
+@media (min-width: 1400px) {
+  #cardList {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+  }
+}
+
+div.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+
+
+.rating-list li {
+  float: left;
+  color: #ffd700;
+  margin-left: 2px;
+}
+
+.containerO {
+  overflow: hidden!important;
+  display: block!important;
+  position: fixed!important;
+}

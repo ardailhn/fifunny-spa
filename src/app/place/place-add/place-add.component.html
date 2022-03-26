@@ -1,0 +1,114 @@
+<main role="main" class="container">
+  <div class="py-5 text-center">
+    <h2>İşletmenizi Ekleyin</h2>
+    <p class="lead">FiFunny.com</p>
+  </div>
+  <div class="row g-5">
+    <div class="col">
+      <h4 class="mb-3"></h4>
+      <form [formGroup]="placeAddForm" (ngSubmit)="add()" class="needs-validation">
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="name" class="form-label">İşletme Adı</label>
+            <input type="text" formControlName="name" class="form-control" id="name" placeholder="" value="">
+            <div style="color: red;" class="help-block"
+              *ngIf="placeAddForm.get('name')?.hasError('required') && placeAddForm.get('name')?.touched">
+              İsim zorunludur.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="description" class="form-label">Aciklama</label>
+            <div class="editor">
+              <ngx-editor-menu [editor]="editor1"></ngx-editor-menu>
+              <ngx-editor [editor]="editor1" [ngModel]="html" [attr.disabled]="false"
+                [placeholder]="'Açıklamalar.....'" formControlName="description">
+              </ngx-editor>
+            </div>
+            <div style="color: red;" class="help-block"
+              *ngIf="placeAddForm.get('description')?.hasError('required') && placeAddForm.get('description')?.touched">
+              Aciklama zorunludur.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="uyarilar" class="form-label">Tanıtım Yazısı</label>
+            <div class="editor">
+              <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
+              <ngx-editor [editor]="editor" [ngModel]="html" [attr.disabled]="false"
+                [placeholder]="'Tanıtım Yazısı.....'" formControlName="uyarilar">
+              </ngx-editor>
+            </div>
+            <div style="color: red;" class="help-block"
+              *ngIf="placeAddForm.get('uyarilar')?.hasError('required') && placeAddForm.get('uyarilar')?.touched">
+              Tanıtım yazsısı zorunludur.
+            </div>
+          </div>
+
+
+          <div class="col-md-5">
+            <label for="sehirId" class="form-label">İl</label>
+            <select formControlName="sehirId" class="form-select" id="sehirId"
+              (ngModelChange)="onChangeProvince($event)">
+              <option value="">il seçiniz</option>
+              <option *ngFor="let p of Province" [value]="p.id">{{p.sehiradi}}</option>
+            </select>
+            <div style="color: red;" class="help-block"
+              *ngIf="placeAddForm.get('sehirId')?.hasError('required') && placeAddForm.get('sehirId')?.touched">
+              İl seçimi zorunudur.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="ilceId" class="form-label">İlçe</label>
+            <select formControlName="ilceId" class="form-select" id="state">
+              <option value="">ilçe seçiniz</option>
+              <option *ngFor="let d of District" [value]="d.id">{{d.ilceadi}}</option>
+            </select>
+            <div style="color: red;" class="help-block"
+              *ngIf="placeAddForm.get('ilceId')?.hasError('required') && placeAddForm.get('ilceId')?.touched">
+              İlçe seçimi zorunludur.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="adres" class="form-label">Adres</label>
+            <textarea type="text" formControlName="adres" class="form-control" id="adres" placeholder=""
+              value=""></textarea>
+            <div style="color: red;" class="help-block"
+              *ngIf="placeAddForm.get('adres')?.hasError('required') && placeAddForm.get('adres')?.touched">
+              Adres zorunludur.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="categoryId" class="form-label">Kategori</label>
+            <select formControlName="categoryId" class="form-select" id="state">
+              <option value="">Kategori seçiniz</option>
+              <option *ngFor="let c of Category" [value]="c.id">{{c.name}}</option>
+            </select>
+            <div style="color: red;" class="help-block"
+              *ngIf="placeAddForm.get('categoryId')?.hasError('required') && placeAddForm.get('categoryId')?.touched">
+              Kategori seçimi zorunludur.
+            </div>
+          </div>
+
+          <div class="col-6">
+            <label for="videoURL" class="form-label">Youtube Linki (isteğe bağlı)</label>
+            <input type="text" formControlName="videoURL" class="form-control" id="videoURL" placeholder="" value="">
+          </div>
+
+          <div class="col-12">
+            <label for="vergiNumarasi" class="form-label">İşletme Vergi Numarası</label>
+            <input type="text" formControlName="vergiNumarasi" class="form-control" id="vergiNumarasi" placeholder=""
+              value="">
+          </div>
+
+        </div>
+        <hr class="my-4">
+        <button class="w-100 btn btn-primary btn-lg btn-dark white black-background" type="submit"
+          [disabled]="!placeAddForm.valid">Ekle</button>
+      </form>
+    </div>
+  </div>
+</main>

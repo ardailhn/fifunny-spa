@@ -1,0 +1,73 @@
+<main>
+  <div class="container marketing text-center align-center mt-5">
+    <div class="row align-center d-flex justify-content-center">
+      <div class="col-lg-4 text-center align-center">
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+        <p>
+          Email : {{user.email}}
+        </p>
+        <p>
+          Telefon : {{user.phone}}
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider" />
+
+    <div class="row featurette">
+      <div class="col-md-6">
+        <h3 class="border-bottom bg-body rounded shadow-sm pb-2 mb-0">Rezervasyon Taleplerim</h3>
+
+        <div *ngFor="let r of reservationsF" class="d-flex pt-3 border-bottom">
+          <div class="col-md-9 d-flex pt-3 bg-light">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title></title>
+              <rect width="100%" height="100%" fill="#357C3C" />
+              <text x="50%" y="50%" fill="#357C3C" dy=".3em">32x32</text>
+            </svg>
+            <p class="pb-3 mb-0 small lh-sm border-bottom">
+              <strong class="d-block text-gray-dark">Durum : <div class="badge bg-success" *ngIf="r.verified">Onaylandı</div><div class="badge bg-warning" *ngIf="!r.verified">Beklemede</div> </strong>
+              Mekan: {{r.place.name}} | Tarih: {{r.sday}}/{{r.smonth}}/{{r.syear}} - {{r.eday}}/{{r.emonth}}/{{r.eyear}}
+            </p>
+          </div>
+          <div class="col-md-3 bg-light text-center align-center">
+            <button class="btn btn-danger btn-sm" style="margin-left: 10px;" (click)="deleteReservation(r)" >İptal Et</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="border-bottom bg-body rounded shadow-sm pb-2 mb-0">Onaylanan Rezervasyonlarım</h3>
+
+        <div *ngFor="let r of reservationsT" class="d-flex pt-3 border-bottom">
+          <div class="col-md-9 d-flex pt-3 bg-light">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title></title>
+              <rect width="100%" height="100%" fill="#357C3C" />
+              <text x="50%" y="50%" fill="#357C3C" dy=".3em">32x32</text>
+            </svg>
+            <p class="pb-3 mb-0 small lh-sm border-bottom">
+              <strong class="d-block text-gray-dark">Durum : <div class="badge bg-success" *ngIf="r.verified">Onaylandı</div><div class="badge bg-warning" *ngIf="!r.verified">Beklemede</div> </strong>
+              Mekan: {{r.place.name}} | Tarih: {{r.sday}}/{{r.smonth}}/{{r.syear}} - {{r.eday}}/{{r.emonth}}/{{r.eyear}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider" />
+    <!-- /END THE FEATURETTES -->
+  </div>
+  <!-- /.container -->
+</main>

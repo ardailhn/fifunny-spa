@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/admin-panel" aria-current="page">
+              <span data-feather="home"></span>
+              Admin paneli
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about-setting">
+              <span data-feather="file"></span>
+              Hakkımızda sayfası
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/addPlaceAdmin">
+              <span data-feather="file"></span>
+              Yeni İşletme Ekle
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/comments-setting">
+              <span data-feather="file"></span>
+              Yorum Onay
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-3">
+      <div class="col">
+        <div class="text-center">
+          <h4 class="mb-3">Hakkımızda Sayfa İçeriği</h4>
+        </div>
+        <form [formGroup]="placeAddForm" (ngSubmit)="update()" class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="NgxEditor__Wrapper">
+              <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+              <ngx-editor [editor]="editor" [ngModel]="html" [attr.disabled]="false" [placeholder]="'Buraya yazınız...'"
+                formControlName="text">
+              </ngx-editor>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+              <button class="w-50 btn btn-dark btn-lg black-background" type="submit">Güncelle</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</div>

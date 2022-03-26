@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="navbar navbar-default">
+    <div class="navbar-header">
+      <h5 class="navbar-brand">Fotoğraf Yükleme</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Foroğraf Seç</h3>
+
+      Çoklu Seçim
+      <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
+
+      Tekli Seçim
+      <input type="file" ng2FileSelect [uploader]="uploader" />
+    </div>
+
+    <div class="col-md-9" style="margin-bottom: 40px">
+      <h3>Foroğrafları Yükle</h3>
+      <p>Dosya sayısı: {{ uploader?.queue?.length }}</p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="50%">Ad</th>
+            <th>Boyut</th>
+            <th>işleme</th>
+            <th>durum</th>
+            <th>aksiyon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <td>
+              <strong>{{ item?.file?.name }}</strong>
+            </td>
+            <td *ngIf="uploader.options.isHTML5" nowrap>
+              {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
+            </td>
+            <td *ngIf="uploader.options.isHTML5">
+              <div class="progress" style="margin-bottom: 0">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  [ngStyle]="{ width: item.progress + '%' }"
+                ></div>
+              </div>
+            </td>
+            <td class="text-center">
+              <span *ngIf="item.isSuccess"
+                ><i class="glyphicon glyphicon-ok"></i
+              ></span>
+              <span *ngIf="item.isCancel"
+                ><i class="glyphicon glyphicon-ban-circle"></i
+              ></span>
+              <span *ngIf="item.isError"
+                ><i class="glyphicon glyphicon-remove"></i
+              ></span>
+            </td>
+            <td nowrap>
+              <button
+                type="button"
+                class="btn btn-success btn-xs"
+                (click)="item.upload()"
+                [disabled]="item.isReady || item.isUploading || item.isSuccess"
+              >
+                <span class="glyphicon glyphicon-upload"></span> Yükle
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning btn-xs"
+                (click)="item.cancel()"
+                [disabled]="!item.isUploading"
+              >
+                <span class="glyphicon glyphicon-ban-circle"></span> İptal
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger btn-xs"
+                (click)="item.remove()"
+              >
+                <span class="glyphicon glyphicon-trash"></span> Kaldır
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <div>
+          Yükleme Durumu:
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{ width: uploader.progress + '%' }"
+            ></div>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-success btn-s"
+          (click)="uploader.uploadAll()"
+          [disabled]="!uploader.getNotUploadedItems().length"
+        >
+          <span class="glyphicon glyphicon-upload"></span> Hepsini yükle
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning btn-s"
+          (click)="uploader.cancelAll()"
+          [disabled]="!uploader.isUploading"
+        >
+          <span class="glyphicon glyphicon-ban-circle"></span> Hepsini iptal et
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-s"
+          (click)="uploader.clearQueue()"
+          [disabled]="!uploader.queue.length"
+        >
+          <span class="glyphicon glyphicon-trash"></span> Hepsini kaldır
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <br /><br />
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">yanıt</div>
+        <div class="panel-body"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,315 @@
+<div class="container">
+  <div class="row">
+    <main class="col-md-12 ms-sm-auto px-md-4 mt-3">
+      <div class="col">
+        <div class="text-center">
+          <h4 class="mb-3">İşletmenizin Filtrelerini Seçin</h4>
+        </div>
+        <form [formGroup]="placeAddForm" (ngSubmit)="update()" class="needs-validation" novalidate>
+          <div class="row g-3">
+  
+            <div class="col-md-6 check">
+              <label for="alkol" class="form-label">Alkol</label>
+              <select formControlName="alkol" class="form-select" id="state">
+                <option value="">Alkol</option>
+                <option [value]="true">evet</option>
+                <option [value]="false">hayır</option>
+              </select>
+              <div style="color: red;" class="help-block" *ngIf="placeAddForm.get('alkol')?.hasError('required') && placeAddForm.get('alkol')?.touched">
+                filtre seçimi zorunludur.
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label for="nargile" class="form-label">Nargile</label>
+              <select formControlName="nargile" class="form-select" id="state">
+                <option value="">Nargile</option>
+                <option [value]="true">evet</option>
+                <option [value]="false">hayır</option>
+              </select>
+              <div style="color: red;" class="help-block" *ngIf="placeAddForm.get('nargile')?.hasError('required') && placeAddForm.get('nargile')?.touched">
+                filtre seçimi zorunludur.
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label for="masaOyunu" class="form-label">Masa Oyunu</label>
+              <select formControlName="masaOyunu" class="form-select" id="state">
+                <option value="">Masa Oyunu</option>
+                <option [value]="true">evet</option>
+                <option [value]="false">hayır</option>
+              </select>
+              <div style="color: red;" class="help-block" *ngIf="placeAddForm.get('masaOyunu')?.hasError('required') && placeAddForm.get('masaOyunu')?.touched">
+                filtre seçimi zorunludur.
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label for="cocukUygun" class="form-label">Çocuklara Uygunluk</label>
+              <select formControlName="cocukUygun" class="form-select" id="state">
+                <option value="">Çocuklara Uygunluk</option>
+                <option [value]="true">evet</option>
+                <option [value]="false">hayır</option>
+              </select>
+              <div style="color: red;" class="help-block" *ngIf="placeAddForm.get('cocukUygun')?.hasError('required') && placeAddForm.get('cocukUygun')?.touched">
+                filtre seçimi zorunludur.
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label for="cocukOyunAlani" class="form-label">cocukOyunAlani</label>
+              <select formControlName="cocukOyunAlani" class="form-select" id="state">
+                <option value="">cocukOyunAlani</option>
+                <option [value]="true">evet</option>
+                <option [value]="false">hayır</option>
+              </select>
+              <div style="color: red;" class="help-block" *ngIf="placeAddForm.get('cocukOyunAlani')?.hasError('required') && placeAddForm.get('cocukOyunAlani')?.touched">
+                filtre seçimi zorunludur.
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label>Fiyat</label>
+              <div class="form-check">
+                <input formControlName="fekonomik" class="form-check-input" type="checkbox" [value]="1" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  ekonomik
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="fstandart"  class="form-check-input" type="checkbox" [value]="1" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  standart
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="flux" class="form-check-input" type="checkbox" [value]="1" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  lüx
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label>Yoğunluk</label>
+              <div class="form-check">
+                <input formControlName="ysakin" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  sakin
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="ystandart"  class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  standart
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="ykalabalik" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  kalabalık
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label>Uygunluk</label>
+              <div class="form-check">
+                <input formControlName="utoplanti" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  toplantı
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="udans" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  dans
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="usohbet" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  sohbet
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="uders" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  ders çalışma
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="uyemek" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  yemek
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="utatli" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  tatlı
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="ukahvalti" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  kahvaltı
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label>Servis Türü</label>
+              <div class="form-check">
+                <input formControlName="sself" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  self servis
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="sgarson" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  garson
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="stake" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  take away
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label>Müzik Türü</label>
+              <div class="form-check">
+                <input formControlName="mrap" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  rap
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="mrock" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  rock
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="mpop" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  pop
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="mhiphop" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  hiphop
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="mklasik" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  klasik
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="mnostaji" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  nostaji
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="myerli" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  yerli
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="myabanci"  class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  yabancı
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label>Tasarım Türü</label>
+              <div class="form-check">
+                <input formControlName="tmodern" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  modern
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="tvintage" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  vintage
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="tsalas" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  salaş
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="totantik" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  otantik
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="tbutik" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  butik
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="tkitap" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  kitap kafe
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-6 check">
+              <label>Masa Türü</label>
+              <div class="form-check">
+                <input formControlName="mmasa" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  masa sandalye
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="mbistro" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  bistro
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="mayakta" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  ayakta
+                </label>
+              </div>
+              <div class="form-check">
+                <input formControlName="mloca" class="form-check-input" type="checkbox" [value]="0" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  loca
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <hr class="my-4">
+          <div class="row g-3">
+            <hr class="my-4">
+            <div class="text-center">
+              <button class="w-50 btn btn-dark btn-lg black-background" type="submit" [disabled]="!placeAddForm.valid">Uygula</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</div>

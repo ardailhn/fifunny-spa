@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/admin-panel" aria-current="page">
+              <span data-feather="home"></span>
+              Admin paneli
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about-setting">
+              <span data-feather="file"></span>
+              Hakkımızda sayfası
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/addPlaceAdmin">
+              <span data-feather="file"></span>
+              Yeni İşletme Ekle
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/comments-setting">
+              <span data-feather="file"></span>
+              Yorum Onay
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-3">
+
+      <div class="my-3 p-3 bg-body rounded shadow-sm" style="background-color: #e5e5e5c6;">
+        <h6 class="border-bottom pb-2 mb-0">Onay Bekleyen Yorumlar</h6>
+        <div *ngIf="comments">
+          <div *ngFor="let c of comments" class="d-flex text-muted pt-3">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Profil</title>
+            </svg>
+            <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+              <div class="d-flex justify-content-between">
+                <strong class="text-gray-dark">{{c.firstName}} {{c.lastName}}</strong>
+                <div>
+                  <button (click)="deleteComment(c.id)" class="btn btn-danger btn-sm"
+                    style="margin-left: 10px;">Sil</button>
+                  <button (click)="verifyComment(c.id)" class="btn btn-success btn-sm"
+                    style="margin-left: 10px;">Onayla</button>
+                </div>
+              </div>
+              <span class="d-block">{{c.description}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>

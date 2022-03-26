@@ -1,0 +1,524 @@
+<mat-drawer-container class="example-container" autosize [hasBackdrop]="true" style="background-color: #FAFAFA;"
+  id="container">
+  <mat-drawer #drawer class="example-sidenav" mode="over" style="width: 200px;height: 100vh;
+  " [(opened)]="opened" (opened)="openedDrawer(1)" (closed)="openedDrawer(0)">
+    <div style="height: 80vh;overflow-y: scroll;">
+      <button style="background-color: #4a2ba7; color: white;max-width: 200px;" mat-menu-item id="menuTitle"
+        (click)="onClick(-1);drawer.toggle()">Tüm
+        Kategoriler</button>
+      <div class="row" style=" max-width: 190px;margin-left: 10px;">
+
+        <button style="max-width: 190px;" mat-menu-item *ngFor="let c of category; let i = index"
+          (click)="onClick(i);drawer.toggle()">{{c.name}}</button>
+
+        <button mat-menu-item (click)="drawer.toggle()" style="max-width: 190px;">İptal</button>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer position="end" #drawerFilter class="example-sidenav1" mode="over"
+    style="width: 220px;background-color: white;height: 100vh;" [(opened)]="opened1" (opened)="openedDrawer(1)"
+    (closed)="openedDrawer(0)">
+    <div style="height: 80vh;overflow-y: scroll;">
+      <div class="row" style="width: 100%;padding: 0;margin: 0; background-color: transparent">
+        <form [formGroup]="filterForm" (ngSubmit)="getFilter()" style="padding: 0;">
+          <div style="height: 45px;background-color: #4a2ba7;text-align: center;align-items: center;justify-content: center;">
+          <h3 id="filterTitle"
+            style="background-color: #4a2ba7;color: white;text-align: center; align-items: center; align-content: center;">
+            Filtreler</h3>
+          </div>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Fiyat
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <section class="row example-section">
+                <mat-checkbox class="example-margin" formControlName="fekonomik">Ekonomik</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="fstandart">Standart</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="flux">Lüx</mat-checkbox>
+              </section>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Yoğunluk
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <section class="row example-section">
+                <mat-checkbox class="example-margin" formControlName="ysakin">Sakin</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="ystandart">Standart</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="ykalabalik">Kalabalık</mat-checkbox>
+              </section>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Uygunluk
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <section class="row example-section">
+                <mat-checkbox class="example-margin" formControlName="utoplanti">Toplantı</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="udans">Dans</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="usohbet">Sohbet</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="uders">Ders Çalışma</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="uyemek">Yemek</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="utatli">Tatlı</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="ukahvalti">Kahvaltı</mat-checkbox>
+              </section>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Servis Türü
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <section class="row example-section">
+                <mat-checkbox class="example-margin" formControlName="sself">Self Servis</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="sgarson">Garson</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="stake">Take Away</mat-checkbox>
+              </section>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Müzik Türü
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <section class="row example-section">
+                <mat-checkbox class="example-margin" formControlName="mrap">Rap</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="mrock">Rock</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="mpop">Pop</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="mhiphop">HipHop</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="mklasik">Klasik</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="mnostaji">Nostalji</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="myerli">Yerli</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="myabanci">Yabancı</mat-checkbox>
+              </section>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Tasarım Türü
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <section class="row example-section">
+                <mat-checkbox class="example-margin" formControlName="tmodern">Modern</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="tvintage">Vintage</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="tsalas">Salaş</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="totantik">Otantik</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="tbutik">Butik</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="tkitap">Kitap Kafe</mat-checkbox>
+              </section>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Masa Türü
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <section class="row example-section">
+                <mat-checkbox class="example-margin" formControlName="mmasa">Masa Sandalye</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="mbistro">Bistro</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="mayakta">Ayakta</mat-checkbox>
+                <mat-checkbox class="example-margin" formControlName="mloca">Loca</mat-checkbox>
+              </section>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Alkol
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-radio-group aria-label="Select an option" formControlName="alkol">
+                <div class="row">
+                  <mat-radio-button [value]="1">Evet</mat-radio-button>
+                  <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                  <mat-radio-button [value]="null">Fark Etmez</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Nargile
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-radio-group aria-label="Select an option" formControlName="nargile">
+                <div class="row">
+                  <mat-radio-button [value]="1">Evet</mat-radio-button>
+                  <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                  <mat-radio-button [value]="null">Fark Etmez</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Masa Oyunları
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-radio-group aria-label="Select an option" formControlName="masaOyunu">
+                <div class="row">
+                  <mat-radio-button [value]="1">Evet</mat-radio-button>
+                  <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                  <mat-radio-button [value]="null">Fark Etmez</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Çocuklar için Uygun
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-radio-group aria-label="Select an option" formControlName="cocukUygun">
+                <div class="row">
+                  <mat-radio-button [value]="1">Evet</mat-radio-button>
+                  <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                  <mat-radio-button [value]="null">Fark Etmez</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Çocuklar Oyun Alanı
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-radio-group aria-label="Select an option" formControlName="cocukOyunAlani">
+                <div class="row">
+                  <mat-radio-button [value]="1">Evet</mat-radio-button>
+                  <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                  <mat-radio-button [value]="null">Fark Etmez</mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <button mat-raised-button color="primary" style="width: 100%;margin-top: 5px;" type="submit"
+            (click)="drawerFilter.toggle()">Ara</button>
+          <button mat-raised-button style="width: 100%;margin-top: 5px;"
+            (click)="drawerFilter.toggle();resetFilter()">Sıfırla</button>
+        </form>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <div class="navbar navbar-expand-lg navbar-dark bg-light py-0;"
+    style="background-image: linear-gradient(to right,#4a2ba7, #4a2ba7);width: 100%;height: 40px;" id="categoryMenu">
+    <button class="navbar-toggler" type="button" mat-button (click)="drawer.toggle();getFocus1()" style="left: 10px;">
+      <mat-icon>menu</mat-icon> Kategoriler
+    </button>
+    <button class="navbar-toggler" type="button" mat-button (click)="drawerFilter.toggle();getFocus()"
+      style="margin-left: 20px;">
+      <mat-icon>filter_list</mat-icon> Filtreler
+    </button>
+    <div class="rows" id="in-navbar" style="max-height: 40px">
+      <div class="collapse navbar-collapse" id="navbarsExample12">
+        <ul class="navbar-nav">
+          <li>
+            <a [class.active]="active === 0" (click)="onClick(-1)" class="nav-link" style="font-size: 12px;">Tüm
+              Kategoriler</a>
+          </li>
+          <li class="nav-item" *ngFor="let c of category; let i = index" style="max-height: 40px;border-radius: 5px;">
+            <a [class.active]="active === i + 1" (click)="onClick(i)" class="nav-link"
+              style="font-size: 12px;max-height: 40px;">{{
+              c.name
+              }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <nav *ngIf="0" class="navbar navbar-expand-lg navbar-dark bg-light py-0 d-flex justify-content-around"
+    aria-label="Twelfth navbar example" style="background-image: linear-gradient(to right,#4a2ba7, #4a2ba7);">
+    <div class="rows" id="in-navbar">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample12"
+        aria-controls="navbarsExample12" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExample12">
+        <ul class="navbar-nav d-flex justify-content-around">
+          <li>
+            <button type="button" mat-button (click)="drawer.toggle()">
+              Toggle sidenav
+            </button>
+          </li>
+          <li>
+            <a [class.active]="active === 0" (click)="onClick(-1)" class="nav-link" style="font-size: 12px;">Tüm
+              Kategoriler</a>
+          </li>
+          <li class="nav-item" *ngFor="let c of category; let i = index">
+            <a [class.active]="active === i + 1" (click)="onClick(i)" class="nav-link" style="font-size: 12px;">{{
+              c.name
+              }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container text-center mt-4">
+    <h2 style="font-size: 32px ;color: #4a2ba7;margin-top: 60px;">{{category[categoryId-1].name}}</h2>
+    <!-- <img width="100%" height="300" alt="item" [src]="itemImageUrl" style="object-fit:fill;
+  width:100%;
+  height:256px;" /> -->
+  </div>
+
+  <hr class="container" style="padding: 3px;" />
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="container" style="min-height: 600px;">
+        <div class="row py-0" id="row1">
+
+          <div class="col-2" id="filters" style="padding: 0;margin: 0;background-color: #FAFAFA;">
+            <div class="sticky">
+              <form [formGroup]="filterForm" (ngSubmit)="getFilter()">
+                <h3
+                  style="background-color: #4a2ba7;color: white;border-top-left-radius: 5px;border-top-right-radius: 5px ;text-align: center; align-items: center; align-content: center; padding: 0; margin-top: 5px;margin-bottom: 0;">
+                  Filtreler</h3>
+                <hr style="margin: 0;padding: 0;" />
+                <mat-accordion>
+
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Fiyat
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="row example-section">
+                      <mat-checkbox class="example-margin" [(ngModel)]="Ekonomik" formControlName="fekonomik">Ekonomik</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="fstandart">Standart</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="flux">Lüx</mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Yoğunluk
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="row example-section">
+                      <mat-checkbox class="example-margin" formControlName="ysakin">Sakin</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="ystandart">Standart</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="ykalabalik">Kalabalık</mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Uygunluk
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="row example-section">
+                      <mat-checkbox class="example-margin" formControlName="utoplanti">Toplantı</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="udans">Dans</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="usohbet">Sohbet</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="uders">Ders Çalışma</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="uyemek">Yemek</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="utatli">Tatlı</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="ukahvalti">Kahvaltı</mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Servis Türü
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="row example-section">
+                      <mat-checkbox class="example-margin" formControlName="sself">Self Servis</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="sgarson">Garson</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="stake">Take Away</mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Müzik Türü
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="row example-section">
+                      <mat-checkbox class="example-margin" formControlName="mrap">Rap</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="mrock">Rock</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="mpop">Pop</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="mhiphop">HipHop</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="mklasik">Klasik</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="mnostaji">Nostalji</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="myerli">Yerli</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="myabanci">Yabancı</mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Tasarım Türü
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="row example-section">
+                      <mat-checkbox class="example-margin" formControlName="tmodern">Modern</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="tvintage">Vintage</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="tsalas">Salaş</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="totantik">Otantik</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="tbutik">Butik</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="tkitap">Kitap Kafe</mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Masa Türü
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="row example-section">
+                      <mat-checkbox class="example-margin" formControlName="mmasa">Masa Sandalye</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="mbistro">Bistro</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="mayakta">Ayakta</mat-checkbox>
+                      <mat-checkbox class="example-margin" formControlName="mloca">Loca</mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Alkol
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-radio-group aria-label="Select an option" formControlName="alkol">
+                      <div class="row">
+                        <mat-radio-button [value]="1">Evet</mat-radio-button>
+                        <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                        <mat-radio-button *ngIf="0" [value]="null">Fark Etmez</mat-radio-button>
+                      </div>
+                    </mat-radio-group>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Nargile
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-radio-group aria-label="Select an option" formControlName="nargile">
+                      <div class="row">
+                        <mat-radio-button [value]="1">Evet</mat-radio-button>
+                        <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                        <mat-radio-button *ngIf="0" [value]="null">Fark Etmez</mat-radio-button>
+                      </div>
+                    </mat-radio-group>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Masa Oyunları
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-radio-group aria-label="Select an option" formControlName="masaOyunu">
+                      <div class="row">
+                        <mat-radio-button [value]="1">Evet</mat-radio-button>
+                        <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                        <mat-radio-button *ngIf="0" [value]="null">Fark Etmez</mat-radio-button>
+                      </div>
+                    </mat-radio-group>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Çocuklar için Uygun
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-radio-group aria-label="Select an option" formControlName="cocukUygun">
+                      <div class="row">
+                        <mat-radio-button [value]="1">Evet</mat-radio-button>
+                        <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                        <mat-radio-button *ngIf="0" [value]="null">Fark Etmez</mat-radio-button>
+                      </div>
+                    </mat-radio-group>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Çocuklar Oyun Alanı
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-radio-group aria-label="Select an option" formControlName="cocukOyunAlani">
+                      <div class="row">
+                        <mat-radio-button [value]="1">Evet</mat-radio-button>
+                        <mat-radio-button [value]="0">Hayır</mat-radio-button>
+                        <mat-radio-button *ngIf="0" [value]="null">Fark Etmez</mat-radio-button>
+                      </div>
+                    </mat-radio-group>
+                  </mat-expansion-panel>
+
+                </mat-accordion>
+                <button mat-raised-button color="primary" style="width: 100%;margin-top: 5px;"
+                  type="submit">Ara</button>
+                <button mat-raised-button style="width: 100%;margin-top: 5px;" (click)="resetFilter()">Sıfırla</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-10 cardContainer" style="border-radius: 20px;">
+
+            <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 d-flex justify-content-around">
+              <div *ngFor="let place of places | placeSearch:filterText | placeFilter:filter" class="col"
+                style="width: 250px;margin-bottom: 20px;margin-right: 10px;" routerLink="/placeDetail/{{ place.id }}"
+                id="cardTop">
+                <div class="card" style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);" id="card">
+                  <img class="card-img-top" src="{{ place.photoURL }}"
+                    style="border-top-right-radius: 20px;border-top-left-radius: 20px;" />
+                  <div class="" style="padding: 0px;margin: 0px;max-height: 20px;text-align: center;">
+                    <ul class="list-inline rating-list" style="display: inline-block;">
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li style="color: black;">(5)</li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-text">
+                      <h4 class="card-text">{{ place.name }}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-drawer-container>

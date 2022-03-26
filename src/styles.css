@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.containerO {
+  overflow: hidden !important;
+  display: block !important;
+  position: fixed !important;
+}

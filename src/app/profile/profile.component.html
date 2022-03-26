@@ -1,0 +1,101 @@
+<main>
+  <div class="container marketing text-center align-center mt-5">
+    <div class="row align-center d-flex justify-content-center">
+      <div class="col-lg-4 text-center align-center">
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+        <p>
+          Email : {{user.email}}
+        </p>
+        <p>
+          Telefon : {{user.phone}}
+        </p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider" />
+
+    <div class="row featurette">
+      <div class="col-md-6">
+        <h3 class="border-bottom pb-2 mb-0">İşletmelerim</h3>
+        <div *ngFor="let p of places" class="d-flex pt-3 border-bottom">
+          <div class="col-md-9 d-flex pt-3 bg-light">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+              preserveAspectRatio="xMidYMid slice" focusable="false" routerLink="/placeDetail/{{ p.id }}">
+              <title>Mağzaya Git</title>
+              <rect width="100%" height="100%" fill="#430297" />
+              <text x="50%" y="50%" fill="#430297" dy=".3em">32x32</text>
+            </svg>
+            <p routerLink="/placeDetail/{{ p.id }}" class="pb-3 mb-0 small lh-sm border-bottom ">
+              <strong class="d-block text-gray-dark">{{ p.name }}</strong>
+            </p>
+          </div>
+          <div class="col-md-3 bg-light text-center align-center">
+            <button (click)="deletePlace(p)" class="btn btn-danger btn-sm" style="margin-left: 10px;">Sil</button>
+            <button routerLink="/placeSetting/{{p.id}}" class="btn btn-warning btn-sm"
+              style="margin-left: 10px;">Düzenle</button>
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <button routerLink="/addPlace" class="btn btn-dark" style="background-color: #430297;">Yeni İşletme
+          Ekle</button>
+
+        <hr class="featurette-divider" />
+
+      </div>
+      <div class="col-md-6">
+        <h3 class="border-bottom bg-body rounded shadow-sm pb-2 mb-0">Rezervasyon İstekleri</h3>
+
+        <div *ngFor="let r of reservationsF" class="d-flex pt-3 border-bottom">
+          <div class="col-md-9 d-flex pt-3 bg-light">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title></title>
+              <rect width="100%" height="100%" fill="#357C3C" />
+              <text x="50%" y="50%" fill="#357C3C" dy=".3em">32x32</text>
+            </svg>
+            <p class="pb-3 mb-0 small lh-sm border-bottom">
+              <strong class="d-block text-gray-dark">{{r.user.firstName}} {{r.user.lastName}}</strong>
+              Mekan: {{r.place.name}} | Tarih: {{r.sday}}/{{r.smonth}}/{{r.syear}} - {{r.eday}}/{{r.emonth}}/{{r.eyear}}
+            </p>
+          </div>
+          <div class="col-md-3 bg-light text-center align-center">
+            <button class="btn btn-danger btn-sm" style="margin-left: 10px;" (click)="deleteReservation(r)" >İptal</button>
+            <button class="btn btn-success btn-sm" style="margin-left: 10px;" (click)="verifyReservation(r)" >Onay</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <h3 class="border-bottom bg-body rounded shadow-sm pb-2 mb-0">Onaylanan Rezervasyonlar</h3>
+
+        <div *ngFor="let r of reservationsT" class="d-flex pt-3 border-bottom">
+          <div class="col-md-9 d-flex pt-3 bg-light">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title></title>
+              <rect width="100%" height="100%" fill="#357C3C" />
+              <text x="50%" y="50%" fill="#357C3C" dy=".3em">32x32</text>
+            </svg>
+            <p class="pb-3 mb-0 small lh-sm border-bottom">
+              <strong class="d-block text-gray-dark">{{r.user.firstName}} {{r.user.lastName}}</strong>
+              Mekan: {{r.place.name}} | Tarih: {{r.sday}}/{{r.smonth}}/{{r.syear}} - {{r.eday}}/{{r.emonth}}/{{r.eyear}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider" />
+    <!-- /END THE FEATURETTES -->
+  </div>
+  <!-- /.container -->
+</main>

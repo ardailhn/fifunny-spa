@@ -1,0 +1,94 @@
+<mat-drawer-container class="example-container" autosize [hasBackdrop]="true" style="background-color: #e5e5e5" id="container">
+  <mat-drawer #drawer class="example-sidenav" mode="over" style="width: 200px;height: 100vh;" 
+  [(opened)]="opened" (opened)="openedDrawer(1)"
+  (closed)="openedDrawer(0)">
+  <div style="height: 80vh; overflow-y: scroll;">
+    <button style="background-color: #4a2ba7; color: white;max-width: 200px;" mat-menu-item
+      (click)="onClick(-1);drawer.toggle()">Tüm
+      Kategoriler</button>
+    <div class="row" style=" max-width: 190px;margin-left: 10px;">
+
+      <button style="max-width: 190px;" mat-menu-item *ngFor="let c of category; let i = index"
+        (click)="onClick(i);drawer.toggle()">{{c.name}}</button>
+
+      <button mat-menu-item (click)="drawer.toggle()" style="max-width: 190px;">İptal</button>
+    </div>
+  </div>
+  </mat-drawer>
+
+  <div class="navbar navbar-expand-lg navbar-dark bg-light py-0"
+    style="background-image: linear-gradient(to right,#4a2ba7, #4a2ba7);width: 100%;"
+    id="categoryMenu">
+    <button class="navbar-toggler" type="button" mat-button (click)="drawer.toggle()" style="left: 10px;">
+      <mat-icon>menu</mat-icon> Kategoriler
+    </button>
+    <div class="rows" id="in-navbar">
+      <div class="collapse navbar-collapse" id="navbarsExample12">
+        <ul class="navbar-nav d-flex justify-content-around">
+          <li>
+            <a [class.active]="active === 0" (click)="onClick(-1)" class="nav-link" style="font-size: 12px;">Tüm
+              Kategoriler</a>
+          </li>
+          <li class="nav-item" *ngFor="let c of category; let i = index">
+            <a [class.active]="active === i + 1" (click)="onClick(i)" class="nav-link" style="font-size: 12px;">{{
+              c.name
+              }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="background-color: #f5f5f5;margin-top: 10px;margin-bottom: 40px;padding-bottom: 40px;">
+    <div class="row">
+      <div class="col-md-12 kapakImg" style="width: 100%;max-height: 400px;" id="kapak">
+        <ngb-carousel class="kapakImg" style="max-height: 400px;" #carousel [interval]="5000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+          <ng-template ngbSlide *ngFor="let img of images; index as i" class="kapakImg" style="max-height: 400px;">
+            <a routerLink="/placeDetail/{{place.id}}" rel="nofollow noopener noreferrer">
+              <div class="picsum-img-wrapper kapakImg"  style="text-align: center;">
+                <img [src]="img" width="100%" class="kapakImg" style="max-height: 400px;">
+              </div>
+            </a>
+          </ng-template>
+        </ngb-carousel>
+        <!-- <ngx-gallery style="width: 100%;" *ngIf="galleryImages && galleryOptions" [options]="galleryOptions"
+          routerLink="/placeDetail/{{place.id}}" [images]="galleryImages" class="ngx-gallery">
+        </ngx-gallery> -->
+      </div>
+
+      <div style="width: 100%; text-align: center;">
+        <div
+          style="width: 100%;max-width: 1296px;background-color: #4a2ba7; text-align: center; max-height: 30px; margin-bottom: 20px;">
+          <h4 style="color: white;">Vitrin</h4>
+        </div>
+      </div>
+
+      <div class="container" id="placeContainer" style="text-align: center;justify-content: center;align-items: center;">
+
+        <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 d-flex text-center" style="text-align: center;justify-content: center;align-items: center;">
+          <div *ngFor="let place of places | placeSearch:filterText | placeFilter:filter | slice:0:8" class="col" style="text-align: center;justify-content: center;align-items: center;">
+            <div class="card" style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);" id="card" routerLink="/placeDetail/{{ place.id }}">
+              <img class="card-img-top" src="{{ place.photoURL }}" style="border-top-right-radius: 20px;border-top-left-radius: 20px;"/>
+                <div class="" style="padding: 0px;margin: 0px;max-height: 20px;text-align: center;">
+                  <ul class="list-inline rating-list" style="display: inline-block;">
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li style="color: black;">(5)</li>
+                  </ul>
+                </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <h4 class="card-text" >{{ place.name }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</mat-drawer-container>

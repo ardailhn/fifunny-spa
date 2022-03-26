@@ -1,0 +1,150 @@
+<div class="container mb-5">
+  <main>
+    <div class="py-5 text-center">
+      <h2>İşletmeler için üye olun</h2>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-12 col-lg-12">
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="needs-validation">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">Adınız</label>
+              <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder=""
+                value="" />
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('firstName')?.hasError('required') &&
+                  registerForm.get('firstName')?.touched
+                ">
+                İsim zorunludur.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Soyadınız</label>
+              <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder=""
+                value="" />
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('lastName')?.hasError('required') &&
+                  registerForm.get('lastName')?.touched
+                ">
+                Soyad Zorunludur
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Telefon</label>
+              <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="90-555-55-55"
+                value="" />
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('phone')?.hasError('required') &&
+                  registerForm.get('phone')?.touched
+                ">
+                Telefon numarası Zorunludur
+              </div>
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('phone')?.hasError('pattern') &&
+                  registerForm.get('phone')?.touched
+                ">
+                Telefon geçerli değildir.
+              </div>
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('phone')?.hasError('minlength') &&
+                  registerForm.get('phone')?.touched
+                ">
+                Telefon geçerli değildir.
+              </div>
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('phone')?.hasError('maxlength') &&
+                  registerForm.get('phone')?.touched
+                ">
+                Telefon geçerli değildir.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">E-posta</label>
+              <input formControlName="email" required type="email" class="form-control" id="email"
+                placeholder="you@example.com" />
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('email')?.hasError('required') &&
+                  registerForm.get('email')?.touched
+                ">
+                E-posta Zorunludur
+              </div>
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('email')?.hasError('email') &&
+                  registerForm.get('email')?.touched
+                ">
+                E-posta geçerli değil.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">E-posta<span class="text-muted">(Onay)</span></label>
+              <input formControlName="confirmEmail" required type="confirmEmail" class="form-control" id="confirmEmail"
+                placeholder="you@example.com" />
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.hasError('missmatch') &&
+                  registerForm.get('confirmEmail')?.touched
+                ">
+                E-postalar aynı değil.
+              </div>
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('confirmEmail')?.hasError('required') &&
+                  registerForm.get('confirmEmail')?.touched
+                ">
+                E-posta Onayı Zorunludur
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-1">
+            <div class="col-sm-6">
+              <label for="password" class="form-label">Şifre</label>
+              <input formControlName="password" required type="password" class="form-control" name="password"
+                id="password" placeholder="" value="" />
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('password')?.hasError('required') &&
+                  registerForm.get('password')?.touched
+                ">
+                Şifre Zorunludur
+              </div>
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('password')?.hasError('minlength') &&
+                  registerForm.get('password')?.touched
+                ">
+                Şifre en az 8 karakterli olmalıdır.
+              </div>
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.get('password')?.hasError('pattern') &&
+                  registerForm.get('password')?.touched
+                ">
+                Şifre en az bir alfabe harfi, bir sayı ve bir özel karakter
+                içermelidir.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="password" class="form-label">Şifre<span class="text-muted">(Onay)</span></label>
+              <input formControlName="confirmPassword" required type="password" class="form-control"
+                id="confirmPassword" name="confirmPassword" placeholder="" value="" />
+              <div style="color: red" class="help-block" *ngIf="
+                  registerForm.hasError('mismatch') &&
+                  registerForm.get('confirmPassword')?.touched
+                ">
+                Şifreler aynı değil.
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4" />
+          <button class="w-100 btn btn-primary btn-dark white black-background btn-lg" [disabled]="!registerForm.valid"
+            type="submit">
+            Üye Ol
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
